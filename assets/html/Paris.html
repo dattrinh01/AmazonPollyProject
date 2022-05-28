@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Paris</title>
+    <link rel="icon" href="https://png.pngtree.com/png-vector/20190329/ourlarge/pngtree-vector-music-note-icon-png-image_889465.jpg" type="image/x-icon" />
+    <link rel="stylesheet" href="../fonts/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="../css/style_paper.css">
+</head>
+<body onload="speakText('Matthew');">
+    <div id="main">
+        <div id="header">
+            <!-- begin nav -->
+            <ul id="nav">
+                <li><a href="#">Home</a></li>
+                <li><a href="#band">Band</a></li>
+                <li><a href="#tour">Tour</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <!-- languages -->
+                <button class="lang-btn">
+                    <a href="#">
+                        LANGUAGES
+                        <i class="nav-arrow-down ti-angle-down"></i>  
+                    </a>
+                        <ul class="subnavlang">
+                            <li><a value="ar" onclick="return translateText('ar');">Arabic (arb)</a></li>
+                            <li><a value="ca" onclick="return translateText('ca');">Catalan (ca-ES)</a></li>
+                            <li><a value="zh" onclick="return translateText('zh');">Chinese, Mandarin (cmn-CN)</a></li>
+                            <li><a value="da" onclick="return translateText('da');">Danish (da-DK)</a></li>
+                            <li><a value="nl" onclick="return translateText('nl');">Dutch (nl-NL)</a></li>
+                            <li><a value="en" onclick="return translateText('en');">English (US) (en-US)</a></li>
+                            <li><a value="fr" onclick="return translateText('fr');">French (fr-FR)</a></li>
+                            <li><a value="de" onclick="return translateText('de');">German (de-DE)</a></li>
+                            <li><a value="hi" onclick="return translateText('hi');">Hindi (hi-IN)</a></li>
+                            <li><a value="is" onclick="return translateText('is');">Icelandic (is-IS)</a></li>
+                            <li><a value="it" onclick="return translateText('it');">Italian (it-IT)</a></li>
+                            <li><a value="ja" onclick="return translateText('ja');">Japanese (ja-JP)</a></li>
+                            <li><a value="ko" onclick="return translateText('ko');">Korean (ko-KR)</a></li>
+                            <li><a value="no" onclick="return translateText('no');">Norwegian (nb-NO)</a></li>
+                            <li><a value="pl" onclick="return translateText('pl');">Polish (pl-PL)</a></li>
+                            <li><a value="pt" onclick="return translateText('pt');">Portuguese (European) (pt-PT)</a></li>
+                            <li><a value="ro" onclick="return translateText('ro');">Romanian (ro-RO)</a></li>
+                            <li><a value="ru" onclick="return translateText('ru');">Russian (ru-RU)</a></li>
+                            <li><a value="es" onclick="return translateText('es');">Spanish (European) (es-ES)</a></li>
+                            <li><a value="sv" onclick="return translateText('sv');">Swedish (sv-SE)</a></li>
+                            <li><a value="tr" onclick="return translateText('tr');">Turkish (tr-TR)</a></li>
+                            <li><a value="cy" onclick="return translateText('cy');">Welsh (cy-GB)</a></li>
+                    </ul>
+                </button>
+                <!-- end languages -->
+                <li>
+                    <a href="#">
+                        More
+                        <i class="nav-arrow-down ti-angle-down"></i>  
+                    </a>
+                    <ul class="subnav">
+                        <li><a href="#">Merchandise</a></li>
+                        <li><a href="#">Extras</a></li>
+                        <li><a href="#">Media</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- end nav -->
+            
+            <!-- begin serch -->
+                <div class="search-btn">
+                    <i class="search-icon ti-search"></i>
+                </div>
+            <!-- end search -->
+        </div>
+        
+        <!-- begin slider -->
+        <div id="slider-Paris">
+            <div class="text-content">
+                <h2 class="text-heading">Paris</h2>
+                <div class="text-description">Salle Pleyel</div>
+            </div>
+        </div>
+        <!-- end slider  -->
+
+        <!-- begin content -->
+        <div id="content">
+            <!-- do 3 phần có cấu trúc giống nhau nên dùng 1 class để làm cho 3 cái -->
+            
+            <!-- about -->
+            <div id="band" class="content-section">
+                <h2 class="section-heading">Paris</h2> 
+                <p class="section-sub-heading">Salle Pleyel</p>    
+                <div class="polly" style="text-align: center;">
+                    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1135.0.min.js"></script>
+                    <script type="text/javascript">
+    
+                        AWS.config.region = 'us-east-1';
+                        AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: 'us-east-1:a937cc80-4408-4701-8f2f-34b0a16e8886'});
+    
+                        var translate = new AWS.Translate({region: AWS.config.region});
+    
+                        function speakText(voiceID) {
+                            if(voiceID == null){
+                                alert('Polly doesnt support this language but Translate does :D')
+                                return;
+                            }
+                            var speechParams = {
+                                OutputFormat: "mp3",
+                                SampleRate: "16000",
+                                Text: "",
+                                TextType: "text",
+                                VoiceId: voiceID
+                            };
+    
+                            speechParams.Text = document.getElementById('about-text').innerHTML;
+                            var polly = new AWS.Polly({apiVersion: '2016-06-10'});
+                            var signer = new AWS.Polly.Presigner(speechParams, polly)
+    
+                            signer.getSynthesizeSpeechUrl(speechParams, function(error, url) {
+                            if (error) {
+                                alert(error);
+                            } else {
+                                document.getElementById('audioSource').src = url;
+                                document.getElementById('audioPlayback').load();
+                            }
+                          });
+                        }
+    
+                        //Translate all content
+                        function translateText(targetLanguage) {
+                            var inputText = document.getElementById('about-text').innerHTML;
+                            var voiceID;
+                            switch (targetLanguage) {
+                                case "ar":
+                                    voiceId = "Zeina";
+                                    break;
+                                case "da":
+                                    voiceId = "Mads";
+                                    break;
+                                case "nl":
+                                    voiceId = "Ruben";
+                                    break;
+                                case "de":
+                                    voiceId = "Marlene";
+                                    break;
+                                case "zh":
+                                    voiceId = "Zhiyu";
+                                    break;
+                                case "en":
+                                    voiceId = "Joanna";
+                                    break;
+                                case "es":
+                                    voiceId = "Penelope";
+                                    break;
+                                case "fr":
+                                    voiceId = "Celine";
+                                    break;
+                                case "pt":
+                                    voiceId = "Vitoria";
+                                    break;
+                                case "ja":
+                                    voiceId = "Takumi";
+                                    break;
+                                case "ko":
+                                    voiceId = "Seoyeon";
+                                    break;
+                                case "ru":
+                                    voiceId = "Maxim";
+                                    break;
+                                default:
+                                    voiceId = null;
+                                    break;
+                            }
+                            if (!inputText) {
+                                alert("Text is not recognized");
+                            }
+    
+                            var params = {
+                                Text: inputText,
+                                SourceLanguageCode: "auto",
+                                TargetLanguageCode: targetLanguage
+                            };
+    
+                            translate.translateText(params, function(err, data) {
+                                if (err) {
+                                    console.log(err, err.stack);
+                                    alert("Error calling Amazon Translate. " + err.message);
+                                    return;
+                                }
+                                if (data) {
+                                    var outputTextArea = document.getElementById('about-text');
+                                    outputTextArea.innerHTML = data.TranslatedText;
+                                    speakText(voiceId);
+                                }
+                            });
+                        }
+                    </script>
+                 
+                <div class="polly" style="text-align: center;">
+                    <audio controls class="audioPolly" id="audioPlayback">
+                        <source id="audioSource" src="" type="audio/mp3">
+                      Your browser does not support the audio element.
+                      </audio>
+                      <div class="textmp3">
+                          <span class="txtmp3" style="padding-left: 174px;">powered by polly</span>
+                      </div>
+                </div>
+                <p class="about-text" id="about-text">An earlier salle Pleyel seating 300 opened in December 1839 at 22 rue Rochechouart. From 1849 to 1869, impresario Charlotte Tardieu organized four chamber concerts a year at the hall. It saw the premieres of many important works, including Chopin's Ballade Op.38 and Scherzo Op.39 (April 26, 1841), Ballade Op.47 (February 21, 1842) and Barcarolle Op.60 (February 16, 1848), the second (1868) and fifth (1896) piano concertos by Saint-Saëns, Fauré's Violin Sonata No. 1 (27 January 1877), and Ravel's Pavane pour une infante défunte and Jeux d'eau (April 5, 1902) and Sonata for Violin and Cello (April 6, 1922). A replacement 3,000-seat hall was commissioned in 1927 by piano manufacturer Pleyel et Cie. The design work was divided in two: the main designer of the concert hall was Gustave Lyon, an acoustician, director of the Pleyel musical instrument factory and an inventor of several musical instruments. But he entrusted the architectural design to the architect Jacques Marcel Auburtin, who died in 1926, and the work was completed by two of his collaborators, André Granet and Jean-Baptiste Mathon. The building work began on December 5, 1924 on the land located at No. 252 rue du Faubourg-Saint-Honoré, near Place de l'Etoile, and was completed in 1927. The inauguration concert by the Orchestre de la Société des Concerts du Conservatoire, with Robert Casadesus as soloist and Igor Stravinsky, Maurice Ravel, and Philippe Gaubert as conductors, included music by Wagner, Manuel de Falla, Igor Stravinsky, Paul Dukas, Debussy, and Ravel. A fire ravaged the interior of the hall on 28 June 1928 and the renovation cost made it impossible to repay the loan to Crédit Lyonnais bank, which eventually took over the property and reduced the seats to 2,400. They in turn sold the hall to Hubert Martigny in 1998. On 19 August 1945, the Commanding General, U.S. Army Theater Service Forces, European Theater of Operations Lt. Gen. John C. H. Lee gave his V-J Day speech and bade farewell to some 300 officers of the Paris Garrison, many of whom were soon heading home to civilian lives. Stravinsky returned to Paris to conduct the French premiere of Agon in 1957, and of Threni in 1958, both at Salle Pleyel. 
+
+
+                </p>
+        </div>
+        <div id="footer">
+            <div class="socials-list">
+                <a href="https://www.facebook.com/"><i class="ti-facebook"></i></a>
+                <a href="https://www.instagram.com/"><i class="ti-instagram"></i></a>
+                <a href="https://www.youtube.com/"><i class="ti-youtube"></i></a>
+                <a href=""><i class="ti-pinterest"></i></a>
+                <a href=""><i class="ti-twitter-alt"></i></a>
+                <a href=""><i class="ti-linkedin"></i></a>
+            </div>
+            <p class="copyright">Powered by <a href="https://www.facebook.com/">Topic 28 - Group 01</a></p>
+        </div>
+    </div>
+    </div>
+</body>
+</html>
