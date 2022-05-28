@@ -18,3 +18,9 @@
 
 # Cài đặt
     Sẽ được mô tả chi tiết ở trong báo cáo đồ án
+    
+# Hướng dẫn demo
+    1. Các bạn down source code về, chạy file index.html
+    2. Ở mục languages, các bạn có thể chọn ngôn ngữ các bạn muốn, sau đó nội dung trang web sẽ được dịch sang ngôn ngữ đó, và polly cũng sẽ đổi theo.
+    3. Các bạn muốn nghe audio thì có thể nhấn play ở thanh ghi dạng âm thanh bên dưới.
+    4. Ngoài ra các bạn cũng có thể download audio về ở nút 3 chấm bên cạnh
