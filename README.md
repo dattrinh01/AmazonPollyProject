@@ -17,4 +17,4 @@
     Nhóm sẽ xây dựng một website chứa nội dung là những bài blogs về những địa điểm tổ chức âm nhạc nổi tiếng, kết hợp với Amazon Polly để chuyển đổi nội dung bài blog đó thành giọng nói, cùng với việc kết hợp translate nội dung ra nhiều ngôn ngữ khác nhau sẽ giúp cho project tiếp cận được với nhiều người hơn.
 
 # Cài đặt
-    Sẽ được thực hiện ở trong báo cáo đồ án
+    Sẽ được mô tả chi tiết ở trong báo cáo đồ án
