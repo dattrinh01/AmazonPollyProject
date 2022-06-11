@@ -1,4 +1,4 @@
-# Đồ án môn học Cloud Computing: Tìm hiểu và ứng dựng Amazon Polly.
+# Đồ án môn học Cloud Computing: Tìm hiểu và ứng dụng Amazon Polly.
 
 ## Đề tài 28 nhóm 01 thực hiện bởi:
 - Nguyễn Lê Đức Đạt		19133017
